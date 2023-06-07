@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Pretendard-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Tenada';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+            scroll-snap-type: y mandatory;
+        }
+
+        section {
+			block-size: 100%;
+		}
+		
+		section, footer {
+			scroll-snap-align: start;
+			scroll-snap-stop: always;
+		}
+
+        body {
+            background-color: #09090b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            height: 110px;
+            margin-top: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        #menu {
+            float: right;
+            margin-top: 50px;
+            margin-right: 50px;
+        }
+
+        #mainmenu li {
+            display: inline;
+            text-align: right;
+            width: 800px;
+            margin-right: 30px;
+        }
+
+        #mainmenu {
+            font-family: 'Pretendard-Bold';
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+        }
+
+        a:hover {
+            color: #ff0000;
+            transition: 0.3s;
+        }
+
+        #logo {
+            display: inline;
+            position: relative;
+            padding: 10px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-decoration: none;
+            z-index: 2;
+            transition: color 1s ease;
+            font-family: 'Tenada';
+            font-size: 40px;
+            float: left;
+            margin-left: 50px;
+            margin-top: 30px;
+        }
+
+        #logo:focus,
+        #logo:hover {
+            outline: 0;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        #logo:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 90%;
+            transition: all 1s ease 0s;
+        }
+
+        #logo:focus:before,
+        #logo:hover:before {
+            width: 100%;
+            height: 90%;
+        }
+
+        #logo:focus:after,
+        #logo:focus:before,
+        #logo:hover:after,
+        #logo:hover:before {
+            outline: 0;
+            background-color: #ffffff;
+            transition: all 1s ease 0s;
+        }
+
+        #logo:hover {
+            color: #2C3E50 !important;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0e0b0e;
+        }
+
+        .footer {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(4, 2vw);
+            grid-column: 5/7;
+            grid-row: 1/2 3/4;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer>div:nth-child(1) {
+            /* KHY */
+            grid-column-start: 5;
+            grid-column-end: 7;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            margin-top: 50px;
+
+            color: #DADADA;
+            font-family: 'Pretendard';
+            font-style: normal;
+            text-align: center;
+        }
+
+        .footer>div:nth-child(2) {
+            /* Copyright */
+            grid-column-start: 5;
+            grid-column-end: 7;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-top: 5px;
+
+            color: #DADADA;
+            font-family: 'Pretendard';
+            font-style: normal;
+            text-align: center;
+        }
+
+        /* Contents */
+
+        /* MainOne */
+        .MainOne {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: repeat(10, 5vw);
+            width: 100%;
+            margin-top: -130px;
+        }
+
+
+        .MainOne>div:nth-child(1) {
+            /* MainBuilding */
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 9;
+        }
+
+        .MainOne>div:nth-child(2) {
+            /* MainTrash */
+            grid-area: 1/4/6/6;
+        }
+
+        .MainOne>div:nth-child(3) {
+            /* MainTraffic */
+            grid-area: 1/6/6/10;
+        }
+
+        .MainOne>div:nth-child(4) {
+            /* MainSmoke */
+            grid-area: 6/4/9/6;
+        }
+
+        .MainOne>div:nth-child(5) {
+            /* MainFire */
+            grid-area: 6/6/9/10;
+        }
+
+        .MainOne>div>img {
+            width: 100%;
+            height: 125%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #MainBuilding,
+        #MainTrash,
+        #MainTraffic,
+        #MainSmoke,
+        #MainFire {
+            opacity: 0.5;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #MainBuilding:hover,
+        #MainTrash:hover,
+        #MainTraffic:hover,
+        #MainSmoke:hover,
+        #MainFire:hover {
+            opacity: 1;
+        }
+
+        #MainSmoke {
+            margin-top: 28.4%;
+        }
+
+        #MainFire {
+            margin-top: 14.2%;
+        }
+
+        /* MainTwo */
+        .MainTwo {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(10, 5vw);
+            grid-column: 3/7; /* ManMade */
+            grid-row: 6/7;
+            width: 100%;
+        }
+
+        .MainTwo>div:nth-child(1) {
+            /* MainTwoBack */
+            grid-column-start: 1;
+            grid-column-end: 13;
+            grid-row-start: 1;
+            grid-row-end: 11;
+        }
+
+        .MainTwo>div:nth-child(2) {
+            /* MainDataRed_Money */
+            grid-column-start: 6;
+            grid-column-end: 8;
+            grid-row-start: 3;
+            grid-row-end: 6;
+        }
+
+        #MainDataRed_Money {
+            transition: all 0.2s linear;
+        }
+
+        #MainDataRed_Money:hover {
+            transition: all 0.2s linear;
+            transform: scale(1.1);
+        }
+
+        .MainTwo>div:nth-child(3) {
+            /* MainDataGray_Money */
+            grid-column-start: 8;
+            grid-column-end: 10;
+            grid-row-start: 3;
+            grid-row-end: 6;
+        }
+
+        #MainDataGray_Money {
+            transition: all 0.2s linear;
+        }
+
+        #MainDataGray_Money:hover {
+            transition: all 0.2s linear;
+            transform: scale(1.1);
+        }
+
+        .MainTwo>div:nth-child(4) {
+            /* MainDataRed_People */
+            grid-column-start: 8;
+            grid-column-end: 10;
+            grid-row-start: 6;
+            grid-row-end: 9;
+        }
+
+        #MainDataRed_People {
+            transition: all 0.2s linear;
+        }
+
+        #MainDataRed_People:hover {
+            transition: all 0.2s linear;
+            transform: scale(1.1);
+        }
+
+        .MainTwo>div:nth-child(5) {
+            /* MainDataGray_People */
+            grid-column-start: 10;
+            grid-column-end: 12;
+            grid-row-start: 6;
+            grid-row-end: 9;
+        }
+
+        #MainDataGray_People {
+            transition: all 0.2s linear;
+        }
+
+        #MainDataGray_People:hover {
+            transition: all 0.2s linear;
+            transform: scale(1.1);
+        }
+
+        .MainTwo>div:nth-child(2),
+        .MainTwo>div:nth-child(3),
+        .MainTwo>div:nth-child(4),
+        .MainTwo>div:nth-child(5) {
+            /* MainDataRed_Money */
+            /* MainDataGray_Money */
+            /* MainDataRed_People */
+            /* MainDataGray_People */
+            margin-top: .5rem;
+            margin-left: .5rem;
+            margin-right: .5rem;
+            margin-bottom: .5rem;
+        }
+
+        .MainTwo>div>img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .MainTwo>div:nth-child(6) {
+            /* ManMadeEN */
+            grid-column-start: 3;
+            grid-column-end: 13;
+            grid-row-start: 5;
+            grid-row-end: 7;
+
+            color: #DADADA;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-size: 1.2rem;
+        }
+
+        .MainTwo>div:nth-child(7) {
+            /* ManMadeKO */
+            grid-column-start: 3;
+            grid-column-end: 5;
+            grid-row-start: 5;
+            grid-row-end: 7;
+            margin-top: 35px;
+
+            color: #F82B33;
+            font-family: 'Tenada';
+            font-style: normal;
+            font-size: 5rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #ManMadeKO:hover {
+            color: #5feb28;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .MainTwo>div:nth-child(8) {
+            /* ManMadeStroke */
+            grid-column-start: 3;
+            grid-column-end: 5;
+            grid-row-start: 6;
+            grid-row-end: 6;
+            margin-top: 35px;
+
+            border-top: 3px solid #DADADA;
+        }
+
+        .MainTwo>div:nth-child(9) {
+            /* ManMadeMean */
+            grid-column-start: 3;
+            grid-column-end: 13;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin-top: 70px;
+            line-height: 1.6;
+
+            color: #DADADA;
+            font-family: 'Pretendard';
+            font-style: normal;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 1700px) {
+            .MainTwo>div:nth-child(6) {
+                /* ManMadeEN */
+                font-size: 1rem;
+            }
+            .MainTwo>div:nth-child(7) {
+                font-size: 3.8rem;
+            }
+            .MainTwo>div:nth-child(9) {
+                font-size: .6rem;
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .MainTwo>div:nth-child(6) {
+                /* ManMadeEN */
+                font-size: .6rem;
+            }
+            .MainTwo>div:nth-child(7) {
+                font-size: 3rem;
+            }
+            .MainTwo>div:nth-child(9) {
+                font-size: .5rem;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .MainTwo>div:nth-child(7) {
+                font-size: 2.5rem;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <a href='index.html'>LifeSafe</a>
+        </div>
+        <nav id="menu">
+            <ul id="mainmenu">
+                <li><a href='1_화재.html'>화재</a></li>
+                <li><a href='2_건축물붕괴.html'>건축물 붕괴</a></li>
+                <li><a href='3_교통사고.html'>교통사고</a></li>
+                <li><a href='4_화생방사고.html'>화생방사고</a></li>
+                <li><a href='5_환경오염사고.html'>환경오염사고</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="MainOne">
+            <div><img id="MainBuilding" src="./img/MainBuilding.jpg" alt=""></div>
+            <div><img id="MainTrash" src="./img/MainTrash.jpg" alt=""></div>
+            <div><img id="MainTraffic" src="./img/MainTraffic.jpg" alt=""></div>
+            <div><img id="MainSmoke" src="./img/MainSmoke.jpg" alt=""></div>
+            <div><img id="MainFire" src="./img/MainFire.jpg" alt=""></div>
+        </section>
+
+        <section class="MainTwo">
+            <div><img id="MainTwoBack" src="./img/MainTwoBack.png" alt=""></div>
+            <div><img id="MainDataRed_Money" src="./img/MainDataRed_Money.png" alt=""></div>
+            <div><img id="MainDataGray_Money" src="./img/MainDataGray_Money.png" alt=""></div>
+            <div><img id="MainDataRed_People" src="./img/MainDataRed_People.png" alt=""></div>
+            <div><img id="MainDataGray_People" src="./img/MainDataGray_People.png" alt=""></div>
+
+            <div id="ManMadeEN">man-made disasters</div>
+            <div id="ManMadeKO">인위재난</div>
+            <div id="ManMadeStroke"></div>
+            <div id="ManMadeMean">
+                <p>
+                    인위재난은 인간이 발생시키는 재난으로, 사회적 혼란과 인명피해를 초래합니다. <br>
+                    화재, 교통사고, 환경오염 등의 형태로 나타나며, 예방과 대비가 중요합니다. <br>
+                    LifeSafe는 모두의 안전을 돕기 위해 인위재난에 대한 인식을 높이고, <br>
+                    예방 및 대비 방법을 제공합니다.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div id="KHY">계원예대 디지털미디어디자인과 강희영</div>
+        <div id="Copyright">Copyright 2023. HeeyoungKang. All rights reserved.</div>
+    </footer>
+</body>
+
+</html>
